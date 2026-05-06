@@ -164,6 +164,136 @@ pub fn load_patterns(registry: &mut PatternRegistry) -> Result<()> {
     )?;
     registry.add_pattern(apr1);
 
+    // Keccak-224 - mode 17700
+    let keccak224 = HashPattern::new(
+        "Keccak-224".to_string(),
+        r"^[a-fA-F0-9]{56}$",
+        Some(17700),
+        Some("Keccak-224".to_string()),
+        HashCategory::Modern,
+        "Keccak-224 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(keccak224);
+
+    // Keccak-256 - mode 17800
+    let keccak256 = HashPattern::new(
+        "Keccak-256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(17800),
+        Some("Keccak-256".to_string()),
+        HashCategory::Modern,
+        "Keccak-256 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(keccak256);
+
+    // Keccak-384 - mode 17900
+    let keccak384 = HashPattern::new(
+        "Keccak-384".to_string(),
+        r"^[a-fA-F0-9]{96}$",
+        Some(17900),
+        Some("Keccak-384".to_string()),
+        HashCategory::Modern,
+        "Keccak-384 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(keccak384);
+
+    // Keccak-512 - mode 18000
+    let keccak512 = HashPattern::new(
+        "Keccak-512".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(18000),
+        Some("Keccak-512".to_string()),
+        HashCategory::Modern,
+        "Keccak-512 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(keccak512);
+
+    // SHAKE128 - mode 18100
+    let shake128 = HashPattern::new(
+        "SHAKE128".to_string(),
+        r"^[a-fA-F0-9]{32}$",
+        Some(18100),
+        Some("SHAKE128".to_string()),
+        HashCategory::Modern,
+        "SHAKE128 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(shake128);
+
+    // SHAKE256 - mode 18200
+    let shake256 = HashPattern::new(
+        "SHAKE256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(18200),
+        Some("SHAKE256".to_string()),
+        HashCategory::Modern,
+        "SHAKE256 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(shake256);
+
+    // yescrypt - mode 25600
+    let yescrypt = HashPattern::new(
+        "yescrypt".to_string(),
+        r"^\$y\$[a-zA-Z0-9./]{1,}\$[a-zA-Z0-9./]{1,}\$[a-zA-Z0-9./]{43}$",
+        Some(25600),
+        Some("yescrypt".to_string()),
+        HashCategory::Authentication,
+        "yescrypt password hashing".to_string(),
+        0.95,
+        true,
+    )?;
+    registry.add_pattern(yescrypt);
+
+    // BLAKE2s-256 - mode 12900
+    let blake2s256 = HashPattern::new(
+        "BLAKE2s-256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(12900),
+        Some("BLAKE2s-256".to_string()),
+        HashCategory::Modern,
+        "BLAKE2s-256 hash".to_string(),
+        0.7,
+        false,
+    )?;
+    registry.add_pattern(blake2s256);
+
+    // Streebog-256 - mode 11700
+    let streebog256 = HashPattern::new(
+        "Streebog-256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(11700),
+        Some("Streebog-256".to_string()),
+        HashCategory::Modern,
+        "GOST R 34.11-2012 Streebog 256-bit".to_string(),
+        0.6,
+        false,
+    )?;
+    registry.add_pattern(streebog256);
+
+    // Streebog-512 - mode 11800
+    let streebog512 = HashPattern::new(
+        "Streebog-512".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(11800),
+        Some("Streebog-512".to_string()),
+        HashCategory::Modern,
+        "GOST R 34.11-2012 Streebog 512-bit".to_string(),
+        0.6,
+        false,
+    )?;
+    registry.add_pattern(streebog512);
+
     Ok(())
 }
 

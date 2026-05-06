@@ -23,6 +23,18 @@ pub fn load_patterns(registry: &mut PatternRegistry) -> Result<()> {
         false,
     )?;
 
+    // Half MD5 - 16 hex characters (mode 5100, confidence 0.4)
+    let md5_half = HashPattern::new(
+        "Half MD5".to_string(),
+        r"^[a-fA-F0-9]{16}$",
+        Some(5100),
+        Some("Raw-MD5-Half".to_string()),
+        HashCategory::Basic,
+        "Half MD5 (first 16 characters)".to_string(),
+        0.4,
+        false,
+    )?;
+
     // NTLM - 32 hex characters (mode 1000, confidence 0.5)
     let ntlm = HashPattern::new(
         "NTLM".to_string(),
@@ -155,8 +167,237 @@ pub fn load_patterns(registry: &mut PatternRegistry) -> Result<()> {
         true,
     )?;
 
+    // MD2 - 32 hex characters (mode 200, confidence 0.3)
+    let md2 = HashPattern::new(
+        "MD2".to_string(),
+        r"^[a-fA-F0-9]{32}$",
+        Some(200),
+        Some("Raw-MD2".to_string()),
+        HashCategory::Legacy,
+        "MD2 message digest".to_string(),
+        0.3,
+        false,
+    )?;
+
+    // RIPEMD128 - 32 hex characters (mode 8400, confidence 0.4)
+    let ripemd128 = HashPattern::new(
+        "RIPEMD128".to_string(),
+        r"^[a-fA-F0-9]{32}$",
+        Some(8400),
+        Some("RIPEMD128".to_string()),
+        HashCategory::Basic,
+        "RIPEMD-128 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // RIPEMD160 - 40 hex characters (mode 6000, confidence 0.5)
+    let ripemd160 = HashPattern::new(
+        "RIPEMD160".to_string(),
+        r"^[a-fA-F0-9]{40}$",
+        Some(6000),
+        Some("RIPEMD160".to_string()),
+        HashCategory::Basic,
+        "RIPEMD-160 hash".to_string(),
+        0.5,
+        false,
+    )?;
+
+    // RIPEMD256 - 64 hex characters (mode 8500, confidence 0.4)
+    let ripemd256 = HashPattern::new(
+        "RIPEMD256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(8500),
+        Some("RIPEMD256".to_string()),
+        HashCategory::Basic,
+        "RIPEMD-256 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // RIPEMD320 - 80 hex characters (mode 8600, confidence 0.4)
+    let ripemd320 = HashPattern::new(
+        "RIPEMD320".to_string(),
+        r"^[a-fA-F0-9]{80}$",
+        Some(8600),
+        Some("RIPEMD320".to_string()),
+        HashCategory::Basic,
+        "RIPEMD-320 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // Whirlpool - 128 hex characters (mode 6100, confidence 0.5)
+    let whirlpool = HashPattern::new(
+        "Whirlpool".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(6100),
+        Some("Whirlpool".to_string()),
+        HashCategory::Basic,
+        "Whirlpool hash".to_string(),
+        0.5,
+        false,
+    )?;
+
+    // Tiger128 - 32 hex characters (mode 8700, confidence 0.4)
+    let tiger128 = HashPattern::new(
+        "Tiger128".to_string(),
+        r"^[a-fA-F0-9]{32}$",
+        Some(8700),
+        Some("Tiger".to_string()),
+        HashCategory::Basic,
+        "Tiger-128 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // Tiger160 - 40 hex characters (mode 8800, confidence 0.4)
+    let tiger160 = HashPattern::new(
+        "Tiger160".to_string(),
+        r"^[a-fA-F0-9]{40}$",
+        Some(8800),
+        Some("Tiger".to_string()),
+        HashCategory::Basic,
+        "Tiger-160 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // Tiger192 - 48 hex characters (mode 8900, confidence 0.4)
+    let tiger192 = HashPattern::new(
+        "Tiger192".to_string(),
+        r"^[a-fA-F0-9]{48}$",
+        Some(8900),
+        Some("Tiger".to_string()),
+        HashCategory::Basic,
+        "Tiger-192 hash".to_string(),
+        0.4,
+        false,
+    )?;
+
+    // BLAKE2b-256 - 64 hex characters (mode 600, confidence 0.7)
+    let blake2b256 = HashPattern::new(
+        "BLAKE2b-256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(600),
+        Some("BLAKE2b-256".to_string()),
+        HashCategory::Modern,
+        "BLAKE2b-256 hash".to_string(),
+        0.7,
+        false,
+    )?;
+
+    // BLAKE2b-384 - 96 hex characters (mode 610, confidence 0.7)
+    let blake2b384 = HashPattern::new(
+        "BLAKE2b-384".to_string(),
+        r"^[a-fA-F0-9]{96}$",
+        Some(610),
+        Some("BLAKE2b-384".to_string()),
+        HashCategory::Modern,
+        "BLAKE2b-384 hash".to_string(),
+        0.7,
+        false,
+    )?;
+
+    // BLAKE2b-512 - 128 hex characters (mode 620, confidence 0.7)
+    let blake2b512 = HashPattern::new(
+        "BLAKE2b-512".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(620),
+        Some("BLAKE2b-512".to_string()),
+        HashCategory::Modern,
+        "BLAKE2b-512 hash".to_string(),
+        0.7,
+        false,
+    )?;
+
+    // GOST R 34.11-94 - 64 hex characters (mode 6900, confidence 0.5)
+    let gost = HashPattern::new(
+        "GOST R 34.11-94".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(6900),
+        Some("GOST".to_string()),
+        HashCategory::Basic,
+        "GOST R 34.11-94 hash".to_string(),
+        0.5,
+        false,
+    )?;
+
+    // GOST R 34.11-2012 (Streebog) 256-bit - 64 hex characters (mode 11700, confidence 0.5)
+    let gost2012_256 = HashPattern::new(
+        "GOST R 34.11-2012 (256-bit)".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(11700),
+        Some("GOST2012-256".to_string()),
+        HashCategory::Modern,
+        "GOST R 34.11-2012 Streebog 256-bit".to_string(),
+        0.5,
+        false,
+    )?;
+
+    // GOST R 34.11-2012 (Streebog) 512-bit - 128 hex characters (mode 11800, confidence 0.5)
+    let gost2012_512 = HashPattern::new(
+        "GOST R 34.11-2012 (512-bit)".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(11800),
+        Some("GOST2012-512".to_string()),
+        HashCategory::Modern,
+        "GOST R 34.11-2012 Streebog 512-bit".to_string(),
+        0.5,
+        false,
+    )?;
+
+    // SHA3-224 - 56 hex characters (mode 17300, confidence 0.8)
+    let sha3_224 = HashPattern::new(
+        "SHA3-224".to_string(),
+        r"^[a-fA-F0-9]{56}$",
+        Some(17300),
+        Some("SHA3-224".to_string()),
+        HashCategory::Modern,
+        "SHA3-224 hash".to_string(),
+        0.8,
+        false,
+    )?;
+
+    // SHA3-256 - 64 hex characters (mode 17400, confidence 0.8)
+    let sha3_256 = HashPattern::new(
+        "SHA3-256".to_string(),
+        r"^[a-fA-F0-9]{64}$",
+        Some(17400),
+        Some("SHA3-256".to_string()),
+        HashCategory::Modern,
+        "SHA3-256 hash".to_string(),
+        0.8,
+        false,
+    )?;
+
+    // SHA3-384 - 96 hex characters (mode 17500, confidence 0.8)
+    let sha3_384 = HashPattern::new(
+        "SHA3-384".to_string(),
+        r"^[a-fA-F0-9]{96}$",
+        Some(17500),
+        Some("SHA3-384".to_string()),
+        HashCategory::Modern,
+        "SHA3-384 hash".to_string(),
+        0.8,
+        false,
+    )?;
+
+    // SHA3-512 - 128 hex characters (mode 17600, confidence 0.8)
+    let sha3_512 = HashPattern::new(
+        "SHA3-512".to_string(),
+        r"^[a-fA-F0-9]{128}$",
+        Some(17600),
+        Some("SHA3-512".to_string()),
+        HashCategory::Modern,
+        "SHA3-512 hash".to_string(),
+        0.8,
+        false,
+    )?;
+
     // Add all patterns to registry
     registry.add_pattern(md5);
+    registry.add_pattern(md5_half);
     registry.add_pattern(ntlm);
     registry.add_pattern(md4);
     registry.add_pattern(lm);
@@ -168,6 +409,25 @@ pub fn load_patterns(registry: &mut PatternRegistry) -> Result<()> {
     registry.add_pattern(sha1_salt);
     registry.add_pattern(sha256_salt);
     registry.add_pattern(md5_salt);
+    registry.add_pattern(md2);
+    registry.add_pattern(ripemd128);
+    registry.add_pattern(ripemd160);
+    registry.add_pattern(ripemd256);
+    registry.add_pattern(ripemd320);
+    registry.add_pattern(whirlpool);
+    registry.add_pattern(tiger128);
+    registry.add_pattern(tiger160);
+    registry.add_pattern(tiger192);
+    registry.add_pattern(blake2b256);
+    registry.add_pattern(blake2b384);
+    registry.add_pattern(blake2b512);
+    registry.add_pattern(gost);
+    registry.add_pattern(gost2012_256);
+    registry.add_pattern(gost2012_512);
+    registry.add_pattern(sha3_224);
+    registry.add_pattern(sha3_256);
+    registry.add_pattern(sha3_384);
+    registry.add_pattern(sha3_512);
 
     Ok(())
 }

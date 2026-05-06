@@ -6,6 +6,12 @@ pub enum HashCategory {
     Basic,
     /// Modern authentication hashes (bcrypt, scrypt, PBKDF2)
     Authentication,
+    /// Modern cryptographic algorithms (SHA3, Keccak, BLAKE2)
+    Modern,
+    /// Salted hash variants (salt+hash combinations)
+    Salted,
+    /// Application-specific formats (CMS, frameworks)
+    Application,
     /// Network security formats (WPA, Kerberos, NetNTLM)
     Network,
     /// Database hash formats (MySQL, PostgreSQL)
@@ -14,6 +20,8 @@ pub enum HashCategory {
     Document,
     /// Archive encryption (RAR, 7-Zip, etc.)
     Archive,
+    /// Full disk/container encryption (TrueCrypt, VeraCrypt)
+    Encryption,
     /// Cryptocurrency wallets (Bitcoin, Ethereum)
     Cryptocurrency,
     /// Legacy formats (DES, LM, etc.)
@@ -28,10 +36,14 @@ impl HashCategory {
         match self {
             HashCategory::Basic => "Basic hash functions",
             HashCategory::Authentication => "Modern authentication hashes",
+            HashCategory::Modern => "Modern cryptographic algorithms",
+            HashCategory::Salted => "Salted hash variants",
+            HashCategory::Application => "Application-specific formats",
             HashCategory::Network => "Network security formats",
             HashCategory::Database => "Database hash formats",
             HashCategory::Document => "Document encryption",
             HashCategory::Archive => "Archive encryption",
+            HashCategory::Encryption => "Full disk/container encryption",
             HashCategory::Cryptocurrency => "Cryptocurrency wallets",
             HashCategory::Legacy => "Legacy hash formats",
             HashCategory::Other => "Other/unknown formats",

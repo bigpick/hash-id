@@ -2,6 +2,9 @@
 
 pub mod basic;
 pub mod modern;
+pub mod salted;
+pub mod applications;
+pub mod documents;
 pub mod network;
 pub mod database;
 pub mod document;
@@ -16,6 +19,9 @@ pub fn load_all_patterns() -> Result<PatternRegistry> {
     // Load patterns by category
     basic::load_patterns(&mut registry)?;
     modern::load_patterns(&mut registry)?;
+    salted::load_patterns(&mut registry)?;
+    applications::load_patterns(&mut registry)?;
+    documents::load_patterns(&mut registry)?;
     network::load_patterns(&mut registry)?;
     database::load_patterns(&mut registry)?;
     document::load_patterns(&mut registry)?;
